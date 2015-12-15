@@ -15,4 +15,4 @@ all: $(EXECUTABLE)
 	$(CHPL) $(OPTFLAGS) $*.chpl -o $*
 
 clean:
-	rm $(EXECUTABLE)
+	rm -f $(EXECUTABLE)
