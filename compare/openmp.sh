@@ -19,10 +19,10 @@ echo "Running OPENMP C Stencil"
 
 ( cd ../CHAPEL/Stencil
 
-if [ ! -f stencil-datablock ]; then
+if [ ! -f stencil-data ]; then
     make clean &> /dev/null
-    make stencil-datablock
+    make stencil-data
 fi
 echo "Running block distributed data-parallel Chapel Stencil"
-./stencil-datablock --n=${n} --iterations=${iterations}
+./stencil-data --n=${n} --iterations=${iterations}
 )

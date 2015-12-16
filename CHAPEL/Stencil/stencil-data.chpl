@@ -24,7 +24,7 @@ param epsilon = 1.e-8;
 const activePoints = (n-2*R)*(n-2*R);
 const stencilSize = 4*R + 1;
 
-// Timeer
+// Timer
 var timer: Timer;
 
 // Domains

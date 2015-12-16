@@ -59,6 +59,8 @@ HISTORY: - Written by Rob Van der Wijngaart, February 2009.
   
 **********************************************************************************/
 
+#define VERBOSE 1
+
 #include <par-res-kern_general.h>
 
 #ifndef RADIUS
