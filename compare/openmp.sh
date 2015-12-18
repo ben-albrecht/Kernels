@@ -13,7 +13,7 @@ if [ ! -f stencil ]; then
 fi
 echo "Running OPENMP C Stencil"
 
-./stencil ${ppn} ${n} ${iterations}
+./stencil ${ppn} ${iterations} ${n}
 
 )
 
@@ -24,5 +24,5 @@ if [ ! -f stencil-data ]; then
     make stencil-data
 fi
 echo "Running block distributed data-parallel Chapel Stencil"
-./stencil-data --n=${n} --iterations=${iterations}
+./stencil-data  --iterations=${iterations} --n=${n}
 )

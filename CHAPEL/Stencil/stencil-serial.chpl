@@ -23,38 +23,33 @@ var timer: Timer;
 
 // Domains
 const Dom = {0.. # n, 0.. # n},
-      innerDom = Dom.expand(-R);
-const W = {-R..R, -R..R};
+      InnerDom = Dom.expand(-R),
+       W = {-R..R, -R..R};
 
 // Arrays
-var input, output: [Dom] real = 0;
+var input, output: [Dom] real = 0.0;
 var weight: [W] real = 0.0;
-
-// Lots of error checking (TODO)
 
 for i in 1..R do {
   const element = 1.0 / (2.0*i*R);
-  weight[0, i] = element;
-  weight[i, 0] = element;
+  weight[0, i]  =  element;
+  weight[i, 0]  =  element;
   weight[-i, 0] = -element;
   weight[0, -i] = -element;
 }
 
+// Initialize the input and output arrays
+serial do [(i, j) in Dom] input[i,j] = coefx*i+coefy*j;
 
+// Print information before main loop
 writeln("Parallel Research Kernels Version ", PRKVERSION);
 writeln("Serial stencil execution on 2D grid");
 writeln("Grid size            = ", n);
 writeln("Radius of stencil    = ", R);
-// Hard-coded for now...
-writeln("Type of stencil      = star");
+writeln("Type of stencil      = star"); // Temporarily hard-coded
 writeln("Data type            = double precision");
-writeln("Untiled");
+writeln("Untiled");                     // Temporarily hard-coded
 writeln("Number of iterations = ", iterations);
-
-// Initialize the input and output arrays
-serial do [(i, j) in Dom] input[i,j] = coefx*i+coefy*j;
-
-writeln("look here");
 
 for iteration in 0..iterations do {
   // Start timer after warmup iteration
@@ -62,10 +57,10 @@ for iteration in 0..iterations do {
     timer.start();
   }
 
-  for (i,j) in innerDom {
-    for jj in -R..R do output[i, j] += weight[0, jj]*input[i, j+jj];
-    for ii in -R..-1 do output[i, j] += weight[ii, 0]*input[i+ii, j];
-    for ii in 1..R do output[i, j] += weight[ii, 0]*input[i+ii, j];
+  for (i,j) in InnerDom {
+    for jj in -R..R  do output[i, j] += weight[0, jj] * input[i, j+jj];
+    for ii in -R..-1 do output[i, j] += weight[ii, 0] * input[i+ii, j];
+    for ii in 1..R   do output[i, j] += weight[ii, 0] * input[i+ii, j];
   }
 
 

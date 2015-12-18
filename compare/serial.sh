@@ -12,7 +12,7 @@ if [ ! -f stencil ]; then
     make stencil
 fi
 echo "Running serial C Stencil"
-./stencil ${n} ${iterations}
+./stencil ${iterations} ${n}
 
 )
 
@@ -23,5 +23,5 @@ if [ ! -f stencil-serial ]; then
     make stencil-serial
 fi
 echo "Running serial Chapel Stencil"
-./stencil-serial --n=${n} --iterations=${iterations}
+./stencil-serial --iterations=${iterations} --n=${n}
 )
