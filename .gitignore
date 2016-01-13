@@ -2,3 +2,5 @@
 *.a
 *.x
 func.c
+
+common/make.defs
